@@ -1,9 +1,12 @@
 [tool.poetry]
-name = "lumiere"
+name = "bella-lumiere"
 version = "0.0.0"
 description = "Live Utilities for Model Inspection and Exploration of Relevant Effects"
 authors = ["gabriele-marino <gabmarino.8601@gmail.com>"]
 readme = "README.md"
+packages = [
+    { include = "lumiere" }
+]
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.14"
