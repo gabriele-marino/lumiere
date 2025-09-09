@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bella-lumiere"
-version = "0.0.1"
+version = "0.0.2"
 description = "Live Utilities for Model Inspection and Exploration of Relevant Effects"
 authors = ["gabriele-marino <gabmarino.8601@gmail.com>"]
 readme = "README.md"
