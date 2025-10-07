@@ -14,8 +14,9 @@ def read_log_file(log_file: str | Path, burn_in: int | float = 0.1) -> pl.DataFr
         comment_prefix="#",
     )
     if isinstance(burn_in, float):
-        burn_in = int(len(df) * burn_in)
-    df = df.filter(pl.col("Sample") > burn_in * len(df))
+        chain_length: int = df["Sample"].max()  # pyright: ignore
+        burn_in = int(chain_length * burn_in)
+    df = df.filter(pl.col("Sample") > burn_in)
     df = df.drop("Sample")
     return df
 
