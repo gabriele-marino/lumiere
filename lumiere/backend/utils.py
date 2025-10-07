@@ -1,4 +1,5 @@
 import re
+from pathlib import Path
 
 import numpy as np
 import polars as pl
@@ -6,7 +7,7 @@ import polars as pl
 from lumiere.backend.typing import Weights
 
 
-def read_log_file(log_file: str, burn_in: int | float = 0.1) -> pl.DataFrame:
+def read_log_file(log_file: str | Path, burn_in: int | float = 0.1) -> pl.DataFrame:
     df = pl.read_csv(
         log_file,
         separator="\t",
@@ -20,7 +21,7 @@ def read_log_file(log_file: str, burn_in: int | float = 0.1) -> pl.DataFrame:
 
 
 def read_weights(
-    log_file: str, burn_in: int | float = 0.1, n_samples: int = 100
+    log_file: str | Path, burn_in: int | float = 0.1, n_samples: int = 100
 ) -> dict[str, list[Weights]]:
     df = read_log_file(log_file, burn_in)
     if n_samples > len(df):
