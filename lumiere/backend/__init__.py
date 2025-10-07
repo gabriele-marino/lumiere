@@ -4,7 +4,7 @@ from lumiere.backend.explain import (
     get_shap_features_importance,
 )
 from lumiere.backend.mlp import get_effective_prior
-from lumiere.backend.utils import extract_weights, read_log_file
+from lumiere.backend.utils import read_log_file, read_weights
 
 __all__ = [
     "relu",
@@ -14,6 +14,6 @@ __all__ = [
     "get_partial_dependence_values",
     "get_shap_features_importance",
     "get_effective_prior",
-    "extract_weights",
     "read_log_file",
+    "read_weights",
 ]

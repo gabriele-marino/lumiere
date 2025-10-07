@@ -19,7 +19,10 @@ def read_log_file(log_file: str, burn_in: int | float = 0.1) -> pl.DataFrame:
     return df
 
 
-def extract_weights(df: pl.DataFrame, n_samples: int = 100) -> dict[str, list[Weights]]:
+def read_weights(
+    log_file: str, burn_in: int | float = 0.1, n_samples: int = 100
+) -> dict[str, list[Weights]]:
+    df = read_log_file(log_file, burn_in)
     if n_samples > len(df):
         raise ValueError("n_samples is greater than the number of available samples")
     df = df.tail(n_samples)
