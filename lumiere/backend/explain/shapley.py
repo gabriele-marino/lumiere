@@ -1,12 +1,12 @@
 from functools import partial
 
 import numpy as np
-import shap  # pyright: ignore[reportMissingTypeStubs]
+import shap  # pyright: ignore
 from numpy.typing import ArrayLike
 
 from lumiere.backend import mlp
 from lumiere.backend.activation_functions import sigmoid
-from lumiere.backend.typings import ActivationFunction, Weights
+from lumiere.backend.typing import ActivationFunction, Weights
 
 
 def get_shap_features_importance(

@@ -1,7 +1,7 @@
 import numpy as np
 from numpy.typing import ArrayLike
 
-from lumiere.backend.typings import Array
+from lumiere.backend.typing import Array
 
 
 def sigmoid(
@@ -20,3 +20,7 @@ def relu(x: ArrayLike) -> Array:
 
 def softplus(x: ArrayLike) -> Array:
     return np.log1p(np.exp(x))
+
+
+def tanh(x: ArrayLike) -> Array:
+    return np.tanh(x)

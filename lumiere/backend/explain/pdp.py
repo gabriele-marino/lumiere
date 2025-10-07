@@ -5,7 +5,7 @@ import numpy as np
 
 from lumiere.backend import mlp
 from lumiere.backend.activation_functions import sigmoid
-from lumiere.backend.typings import ActivationFunction, Weights
+from lumiere.backend.typing import ActivationFunction, Weights
 
 
 def get_partial_dependence_values(
@@ -15,16 +15,15 @@ def get_partial_dependence_values(
     output_activation: ActivationFunction = sigmoid,
 ) -> list[list[float]]:  # shape: (n_features, n_grid_points)
     inputs = np.array(list(product(*features_grid)), dtype=np.float64)
-    all_pdvalues: list[list[float]] = []
+    pdvalues: list[list[float]] = []
     for feature_idx in range(len(features_grid)):
-        pdvalues: list[float] = []
-        grid_points = features_grid[feature_idx]
-        for feature_value in grid_points:
+        feature_pdvalues: list[float] = []
+        for feature_value in features_grid[feature_idx]:
             x = np.copy(inputs)
             x[:, feature_idx] = feature_value
-            pdvalue = np.mean(
+            mean_output = np.mean(
                 mlp.forward(weights, x, hidden_activation, output_activation)
             )
-            pdvalues.append(float(pdvalue))
-        all_pdvalues.append(pdvalues)
-    return all_pdvalues
+            feature_pdvalues.append(float(mean_output))
+        pdvalues.append(feature_pdvalues)
+    return pdvalues
