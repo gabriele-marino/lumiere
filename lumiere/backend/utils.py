@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 import polars as pl
 
-from lumiere.backend.typing import Weights
+from lumiere.typing import Weights
 
 
 def read_log_file(log_file: str | Path, burn_in: int | float = 0.1) -> pl.DataFrame:
@@ -24,7 +24,7 @@ def read_log_file(log_file: str | Path, burn_in: int | float = 0.1) -> pl.DataFr
 def read_weights(
     log_file: str | Path, burn_in: int | float = 0.1, n_samples: int = 100
 ) -> dict[str, list[Weights]]:
-    df = read_log_file(log_file, burn_in)
+    df = read_log_file(log_file=log_file, burn_in=burn_in)
     if n_samples > len(df):
         raise ValueError("n_samples is greater than the number of available samples")
     df = df.tail(n_samples)

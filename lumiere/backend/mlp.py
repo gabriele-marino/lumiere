@@ -3,7 +3,7 @@ from collections.abc import Sequence
 import numpy as np
 from numpy.typing import ArrayLike
 
-from lumiere.backend.typing import ActivationFunction, Array, Weights
+from lumiere.typing import ActivationFunction, Array, Weights
 
 
 def forward(
@@ -11,11 +11,9 @@ def forward(
     inputs: ArrayLike,  # shape: (n_samples, n_features)
     hidden_activation: ActivationFunction,
     output_activation: ActivationFunction,
-    normalize: bool = True,
 ) -> Array:  # shape: (n_samples,)
     x = np.asarray(inputs, dtype=np.float64)
-    if normalize:
-        x = (x - x.min(axis=0)) / (x.max(axis=0) - x.min(axis=0))
+    x = (x - x.min(axis=0)) / (x.max(axis=0) - x.min(axis=0))
     n_samples, _ = x.shape
     activation_funcs = [hidden_activation] * (len(weights) - 1) + [output_activation]
     for layer_weights, activation_func in zip(weights, activation_funcs):

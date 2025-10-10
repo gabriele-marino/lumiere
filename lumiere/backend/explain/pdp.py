@@ -5,7 +5,7 @@ import numpy as np
 
 from lumiere.backend import mlp
 from lumiere.backend.activation_functions import sigmoid
-from lumiere.backend.typing import ActivationFunction, Weights
+from lumiere.typing import ActivationFunction, Weights
 
 
 def get_partial_dependence_values(

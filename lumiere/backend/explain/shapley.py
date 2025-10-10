@@ -6,7 +6,7 @@ from numpy.typing import ArrayLike
 
 from lumiere.backend import mlp
 from lumiere.backend.activation_functions import sigmoid
-from lumiere.backend.typing import ActivationFunction, Weights
+from lumiere.typing import ActivationFunction, Weights
 
 
 def get_shap_features_importance(
@@ -18,9 +18,10 @@ def get_shap_features_importance(
     inputs = np.asarray(inputs, dtype=np.float64)
     model = partial(
         mlp.forward,
-        weights,
+        weights=weights,
         hidden_activation=hidden_activation,
         output_activation=output_activation,
     )
     explainer = shap.Explainer(model, inputs)
-    return np.mean(np.abs(explainer(inputs).values), axis=0)  # pyright: ignore
+    abs_shap_values = np.abs(explainer(inputs).values)  # pyright: ignore
+    return np.mean(abs_shap_values, axis=0).tolist()

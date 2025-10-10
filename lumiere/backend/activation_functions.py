@@ -1,7 +1,7 @@
 import numpy as np
 from numpy.typing import ArrayLike
 
-from lumiere.backend.typing import Array
+from lumiere.typing import Array
 
 
 def sigmoid(
