@@ -18,7 +18,7 @@ def get_shap_features_importance(
     inputs = np.asarray(inputs, dtype=np.float64)
     model = partial(
         mlp.forward,
-        weights=weights,
+        weights,
         hidden_activation=hidden_activation,
         output_activation=output_activation,
     )
